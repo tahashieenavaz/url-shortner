@@ -1,0 +1,27 @@
+GET:
+	/ => Welcome Page
+	/profile => Profile Page ( list of all the authenticated user’s links )
+
+POST:
+	/login => Send ( email, password ) to login
+	/register => Send ( email, password, name ) to registers
+	/logout => Visit to log out
+	/profile/add => Send ( name, email, password ) to add a link to database
+
+PUT:
+	/profile/edit => Send ( slug, target ) to update an existing link
+
+DELETE:
+	/profile/delete => Send ( slug ) to delete a link
+
+
+__________________
+
+[*] I have used sqlite database because I wanted to keep things simple and minimal.
+[*] ALl components were written by me and during time of interview. I didn't copy a single line of code.
+
+__________________
+
+RIGHTS RESERVED FOR TAHA SHIEENAVAZ
++98 937 600 30 94
+
