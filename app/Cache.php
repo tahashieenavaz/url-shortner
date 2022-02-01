@@ -14,14 +14,12 @@ class Cache
 
     public static function remember($name, $callback)
     {
-        if( ! self::exists($name) ){
-            $output = $callback();
-            file_put_contents(self::slug($name), serialize($output), 2);
-            return $output;
-        }
+        if( self::exists($name))
+            return self::load($name);
 
-        // In case it exists
-        return self::load($name);
+        $output = $callback();
+        file_put_contents(self::slug($name), serialize($output), 2);
+        return $output;
     }
 
     public static function exists($name) {

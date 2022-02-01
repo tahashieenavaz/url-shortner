@@ -47,6 +47,9 @@ if( $method == 'POST' ) {
     ];
 }
 
+if( ! array_key_exists($target, $map) )
+    dm('Your requested URI was not found.');
+
 $class = $map[$target];
 $class = "App\Requests\\$method\\$class";
 (new $class)->handle();
