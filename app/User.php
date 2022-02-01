@@ -9,6 +9,16 @@ class User {
         $_SESSION['current_email'] = $email;
     }
 
+    public static function me() {
+        if(! self::isLoggedIn()) return false;
+
+        $statement = db()->prepare('SELECT id,name,email FROM users WHERE email=?');
+        $statement->execute([$_SESSION['current_email']]);
+        $user = $statement->fetch(\PDO::FETCH_OBJ);
+
+        return $user;
+    }
+
     public static function isLoggedIn() {
         return array_key_exists('login', $_SESSION) && ! empty($_SESSION['current_email']);
     }
@@ -20,7 +30,6 @@ class User {
     }
 
     public static function login($email, $password) {
-
         $result = db()->prepare("SELECT name,email FROM `users` WHERE email=? AND password=?");
         $result->execute([$email, $password]);
         $results = $result->fetchAll(\PDO::FETCH_ASSOC);

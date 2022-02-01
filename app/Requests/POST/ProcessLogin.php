@@ -5,7 +5,9 @@ namespace App\Requests\POST;
 use App\Requests\PostRequest;
 use App\User;
 
-class ProcessLogin extends PostRequest {
+class ProcessLogin {
+
+    use PostRequest;
 
     public $required = ['email', 'password'];
 

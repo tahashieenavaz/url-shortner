@@ -14,3 +14,17 @@ function checkVar( $value, $method, $message = '' ) {
     if( ! filter_var($value, $method) )
         dump( $message );
 }
+
+function message( $content ) {
+    return json_encode([
+        'message' => $content
+    ]);
+}
+
+function dm( $content ) {
+    echo json_encode([
+        'message' => $content
+    ]);
+
+    exit;
+}

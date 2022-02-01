@@ -10,6 +10,9 @@ use App\Requests\POST\ProcessLogin;
 use App\Requests\POST\ProcessRegister;
 use App\User;
 
+define('DS',DIRECTORY_SEPARATOR );
+define('PATH', __DIR__ . DS);
+define('CACHE', PATH.'cache'.DS );
 
 $method = $_SERVER['REQUEST_METHOD'];
 
@@ -26,15 +29,15 @@ if( $method == 'POST' ) {
         '/login' => 'ProcessLogin',
         '/register' => 'ProcessRegister',
         '/logout' => 'ProcessLogout',
+        '/profile/add' => 'ProfileAddLink',
+        '/profile/edit' => 'ProfileEditLink',
+        '/profile/delete' => 'ProfileDeleteLink',
     ];
 }elseif( $method == 'GET' ) {
     // Handling GET request
     $map = [
         '/' => 'IndexPage',
         '/profile' => 'ProfilePage',
-        '/profile/add' => 'ProfileAddLink',
-        '/profile/edit' => 'ProfileEditLink',
-        '/profile/delete' => 'ProfileEditLink',
     ];
 
     $link = explode( '/', $target );
