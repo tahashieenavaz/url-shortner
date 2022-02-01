@@ -1,7 +1,5 @@
 <?php
-
 session_start();
-
 header('Content-Type: application/json');
 
 require 'vendor/autoload.php';
@@ -15,11 +13,10 @@ use App\User;
 
 $method = $_SERVER['REQUEST_METHOD'];
 
-if( strpos($_SERVER['REQUEST_URI'], '?') ) {
+if( strpos($_SERVER['REQUEST_URI'], '?') )
     $target = substr($_SERVER['REQUEST_URI'], 0, strpos( $_SERVER['REQUEST_URI'], '?' ));
-}else {
+else
     $target = $_SERVER['REQUEST_URI'];
-}
 
 $db = new PDO("sqlite:".__DIR__."/database.sqlite");
 
@@ -27,13 +24,17 @@ $db = new PDO("sqlite:".__DIR__."/database.sqlite");
 if( $method == 'POST' ) {
     $map = [
         '/login' => 'ProcessLogin',
-        '/register' => 'ProcessRegister'
+        '/register' => 'ProcessRegister',
+        '/logout' => 'ProcessLogout',
     ];
 }elseif( $method == 'GET' ) {
     // Handling GET request
     $map = [
         '/' => 'IndexPage',
-        '/profile' => 'ProfilePage'
+        '/profile' => 'ProfilePage',
+        '/profile/add' => 'ProfileAddLink',
+        '/profile/edit' => 'ProfileEditLink',
+        '/profile/delete' => 'ProfileEditLink',
     ];
 
     $link = explode( '/', $target );
@@ -62,5 +63,4 @@ if( $method == 'POST' ) {
 
 $class = $map[$target];
 $class = "App\Requests\\$method\\$class";
-
 (new $class)->handle();

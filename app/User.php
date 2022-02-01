@@ -14,6 +14,8 @@ class User {
     }
 
     public static function logout() {
+        unset($_SESSION['login']);
+        unset($_SESSION['current_email']);
         session_destroy();
     }
 

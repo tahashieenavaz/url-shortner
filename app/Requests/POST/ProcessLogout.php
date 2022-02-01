@@ -8,7 +8,7 @@ class ProcessLogout {
 
     public function handle() {
         User::logout();
-        return json_encode([
+        echo json_encode([
             'message' => 'Logout successful'
         ]);
     }

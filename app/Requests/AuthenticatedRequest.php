@@ -8,9 +8,10 @@ class AuthenticatedRequest {
     function __construct()
     {
         if( ! User::isLoggedIn() ) {
-            return json_encode([
+            echo json_encode([
                 'message' => 'Unauthenticated'
             ]);
+            exit;
         }
     }
 }
