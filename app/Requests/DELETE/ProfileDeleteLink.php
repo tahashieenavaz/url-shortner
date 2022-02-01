@@ -13,7 +13,7 @@ class ProfileDeleteLink extends AuthenticatedRequest {
 
     public function handle()
     {
-        $slug = $_POST['slug'];
+        $slug = $_REQUEST['slug'];
         $statement = db()->prepare('SELECT count(*) FROM urls WHERE user_id=? AND slug=?');
         $statement->execute([ User::me()->id, $slug ]);
         if( $statement->fetchColumn() != 1 )
