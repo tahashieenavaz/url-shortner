@@ -5,7 +5,7 @@ namespace App\Requests\GET;
 class IndexPage {
 
     public function handle() {
-        echo "Good";
+        echo message('Developed by Taha Shieenavaz');
     }
 
 }

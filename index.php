@@ -6,7 +6,7 @@ header('Content-Type: application/json');
 require 'vendor/autoload.php';
 
 use App\Cache;
-use App\HandleURLs;
+use App\HandleShortenedURL;
 
 define('DS',DIRECTORY_SEPARATOR );
 define('PATH', __DIR__ . DS);
@@ -37,7 +37,7 @@ if( $method == 'POST' ) {
         '/profile' => 'ProfilePage',
     ];
 
-    (new HandleURLs)($target, $map);
+    (new HandleShortenedURL)($target, $map);
 }elseif($method == 'DELETE') {
     $map = [
         '/profile/delete' => 'ProfileDeleteLink',

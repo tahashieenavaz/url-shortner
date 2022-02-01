@@ -1,7 +1,7 @@
 <?php
 namespace App;
 
-class HandleURLs {
+class HandleShortenedURL {
     public function __invoke( $target, $map ) {
         $link = explode( '/', $target );
         if( ! array_key_exists($target, $map) && count( $link ) == 2 ) {
