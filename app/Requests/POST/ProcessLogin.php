@@ -2,11 +2,12 @@
 
 namespace App\Requests\POST;
 
+use App\Requests\GuestRequest;
 use App\Requests\PostRequest;
 use App\Str;
 use App\User;
 
-class ProcessLogin {
+class ProcessLogin extends GuestRequest {
 
     use PostRequest;
 
