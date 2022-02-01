@@ -15,9 +15,9 @@ class Cache
     public static function remember($name, $callback)
     {
         if( ! self::exists($name) ){
-            $output = serialize($callback());
-            file_put_contents(self::slug($name), $output, 2);
-            return unserialize($output);
+            $output = $callback();
+            file_put_contents(self::slug($name), serialize($output), 2);
+            return $output;
         }
 
         // In case it exists

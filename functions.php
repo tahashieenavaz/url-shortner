@@ -28,3 +28,7 @@ function dm( $content ) {
 
     exit;
 }
+
+function response($content) {
+    echo json_encode($content);
+}

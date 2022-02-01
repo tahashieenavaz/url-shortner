@@ -1,16 +1,17 @@
 <?php
 session_start();
+date_default_timezone_set('Asia/Tehran');
 header('Content-Type: application/json');
 
 require 'vendor/autoload.php';
 
 use App\Cache;
-
 use App\HandleURLs;
 
 define('DS',DIRECTORY_SEPARATOR );
 define('PATH', __DIR__ . DS);
 define('CACHE', PATH.'cache'.DS );
+define('URL', $_SERVER['HTTP_HOST'] . '/');
 
 $method = $_SERVER['REQUEST_METHOD'];
 
@@ -28,8 +29,6 @@ if( $method == 'POST' ) {
         '/register' => 'ProcessRegister',
         '/logout' => 'ProcessLogout',
         '/profile/add' => 'ProfileAddLink',
-        '/profile/edit' => 'ProfileEditLink',
-        '/profile/delete' => 'ProfileDeleteLink',
     ];
 }elseif( $method == 'GET' ) {
     // Handling GET request
@@ -39,6 +38,14 @@ if( $method == 'POST' ) {
     ];
 
     (new HandleURLs)($target, $map);
+}elseif($method == 'DELETE') {
+    $map = [
+        '/profile/delete' => 'ProfileDeleteLink',
+    ];
+}elseif($method == 'PUT') {
+    $map = [
+        '/profile/edit' => 'ProfileEditLink',
+    ];
 }
 
 $class = $map[$target];

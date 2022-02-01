@@ -10,7 +10,8 @@ class User {
     }
 
     public static function me() {
-        if(! self::isLoggedIn()) return false;
+        if(! self::isLoggedIn())
+            return null;
 
         $statement = db()->prepare('SELECT id,name,email FROM users WHERE email=?');
         $statement->execute([$_SESSION['current_email']]);

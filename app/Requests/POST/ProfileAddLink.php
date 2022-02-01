@@ -6,11 +6,11 @@ use App\User;
 
 class ProfileAddLink extends AuthenticatedRequest {
     use PostRequest;
-    public $required = ['slug', 'target'];
+    public $required = ['target'];
     public function handle()
     {
         checkVar($_POST['target'], FILTER_VALIDATE_URL, 'Enter a valid URL');
-        $slug = $_POST['slug'];
+        $slug = substr(hash('sha256', microtime(true)),0, 7);
         $target = $_POST['target'];
 
         // Checking to see slug Doesnt exists
@@ -29,7 +29,10 @@ class ProfileAddLink extends AuthenticatedRequest {
             User::me()->id,
         ]);
 
-        dm('URL added successfully');
+        response([
+            'short' => URL . $slug,
+            'target' => $target
+        ]);
     }
 
 }
