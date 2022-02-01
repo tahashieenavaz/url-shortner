@@ -13,6 +13,7 @@ trait PostRequest {
             if( ! array_key_exists($requiredItem, $_REQUEST) ) {
                 response([
                     'message' => 'Provide full data please',
+                    'tip' => 'Use <params> tab in Postman!',
                     'required' => $this->required
                 ]);
                 die;

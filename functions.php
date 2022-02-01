@@ -33,3 +33,11 @@ function dm( $content ) {
 function response($content) {
     echo json_encode($content);
 }
+
+function abort( $message ) {
+    echo json_encode([
+        'code' => 403,
+        'message' => $message
+    ]);
+    exit;
+}

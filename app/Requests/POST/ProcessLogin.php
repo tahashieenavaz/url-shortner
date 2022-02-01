@@ -3,6 +3,7 @@
 namespace App\Requests\POST;
 
 use App\Requests\PostRequest;
+use App\Str;
 use App\User;
 
 class ProcessLogin {
@@ -14,7 +15,7 @@ class ProcessLogin {
     public function handle() {
         checkVar($_REQUEST['email'],FILTER_VALIDATE_EMAIL,'Wrong Email');
         $email = $_REQUEST['email'];
-        $password = hash('sha256', $_REQUEST['password']);
+        $password = Str::hash($_REQUEST['password']);
         echo User::login( $email, $password );
     }
 

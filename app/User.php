@@ -38,11 +38,14 @@ class User {
         if( count( $results ) == 1 ) {
             // Valid User Found
             self::setLoginSession($email);
-            return json_encode($results[0]);
+            return json_encode([
+                'message' => 'Login successful',
+                'user' => $results[0]
+            ]);
         }
 
         return json_encode([
-            'message' => 'Login unsuccessful'
+            'message' => 'Login UNSUCCESSFUL'
         ]);
 
     }

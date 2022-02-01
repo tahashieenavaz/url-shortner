@@ -2,9 +2,10 @@
 
 namespace App\Requests\POST;
 
+use App\Requests\AuthenticatedRequest;
 use App\User;
 
-class ProcessLogout {
+class ProcessLogout extends AuthenticatedRequest {
 
     public function handle() {
         User::logout();
