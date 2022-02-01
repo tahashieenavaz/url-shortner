@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Requests\POST;
+namespace App\Requests\PUT;
+
 use App\Requests\AuthenticatedRequest;
 use App\Requests\PostRequest;
 use App\User;
@@ -13,9 +14,9 @@ class ProfileEditLink extends AuthenticatedRequest {
 
     public function handle()
     {
-        checkVar($_POST['target'], FILTER_VALIDATE_URL, 'Enter a valid URL');
-        $slug = $_POST['slug'];
-        $target = $_POST['target'];
+        checkVar($_REQUEST['target'], FILTER_VALIDATE_URL, 'Enter a valid URL for target input.');
+        $slug = $_REQUEST['slug'];
+        $target = $_REQUEST['target'];
 
         // Checking to see slug Doesnt exists
         $statement = db()->prepare('SELECT count(*) FROM urls WHERE slug=? AND user_id=?');

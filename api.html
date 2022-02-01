@@ -1,0 +1,179 @@
+<html>
+
+    <head>
+        <title>
+            Taha Shieenavaz - API Documentation
+        </title>
+        <style>
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+            body {
+                display: flex;
+                flex-direction: column;
+                padding: 3rem 0;
+                gap: 3ch;
+                min-height: 100vh;
+                font-family: sans-serif;
+                line-height: 2;
+            }
+            .text {
+                width: 600px;
+                margin: 0 auto;
+                display: grid;
+                gap: 1ch;
+            }
+            .code {
+                text-align: center;
+                background: #232323;
+                color: #fafafa;
+                padding: 2rem 5rem;
+                font-size: 24px;
+                margin-bottom: 3rem;
+            }
+            .gray {
+                color: #C9C9C9;
+            }
+
+            .tag {
+                padding: .25ch 2ch;
+                border-radius: 10px;
+                background: crimson;
+                color:#fafafa;
+                font-size: 10px;
+                border: 1px solid darkred;
+            }
+            .tag.get {
+                background: mediumspringgreen;
+                border-color: springgreen;
+            }
+
+            .tag.put {
+                background: darkorange;
+                border-color: orange;
+            }
+
+            .tag.delete {
+                background: royalblue;
+                border-color: dodgerblue;
+            }
+            .text h1 {
+                display: flex;
+                align-items: center;
+                gap:1ch;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <div class="text">
+            <h1>Registering Users <span class="tag">POST</span></h1>
+            <p>
+                For registering users you can use below endpoint and you can provide:
+                <ul>
+                    <li>name</li>
+                    <li>email</li>
+                    <li>password</li>
+                </ul>
+            </p>
+        </div>
+        <div class="code">
+            /register
+        </div>
+
+
+        <div class="text">
+            <h1>Logging Users in <span class="tag">POST</span></h1>
+            <p>
+                For logging in you can use below endpoint and get a <strong>BEARER TOKEN</strong> to modify data, you can provide:
+            <ul>
+                <li>email</li>
+                <li>password</li>
+            </ul>
+            </p>
+        </div>
+        <div class="code">
+            /login
+        </div>
+
+        <div class="text">
+            <h1>Logout Users <span class="tag">POST</span></h1>
+            <p>
+                You can use this endpoint to terminate users' sessions.
+            </p>
+        </div>
+        <div class="code">
+            /logout
+        </div>
+
+
+        <div class="text">
+            <h1>Fetching All Links <span class="tag get">GET</span></h1>
+            <p>
+                To retrieve <strong>all the authenticated users'</strong> links.
+                Use endpoint below with provided information.
+            </p>
+        </div>
+        <div class="code">
+            /profile
+        </div>
+
+        <div class="text">
+            <h1>A Single Link <span class="tag get">GET</span></h1>
+            <p>
+                To get relevant information about a shortened link.
+            </p>
+        </div>
+        <div class="code">
+            /{slug}
+        </div>
+
+        <div class="text">
+            <h1>Adding a New Link <span class="tag">POST</span></h1>
+            <p>
+                To add a new link to database you can use below endpoint with.
+                <ul>
+                    <li>target</li>
+                </ul>
+            </p>
+        </div>
+        <div class="code">
+            /profile/add
+        </div>
+
+        <div class="text">
+            <h1>Updating a Link <span class="tag put">PUT</span></h1>
+            <p>
+                To update a link that <strong>belongs to you</strong> use below endpoint.
+                <ul>
+                    <li>slug</li>
+                    <li>target</li> - The New Target
+                </ul>
+            </p>
+        </div>
+        <div class="code">
+            /profile/edit
+        </div>
+
+        <div class="text">
+            <h1>Deleting a link <span class="tag delete">DELETE</span></h1>
+            <p>
+                To delete a link that <strong>belongs to you</strong> use below endpoint.
+            </p>
+            <ul>
+                <li>slug</li>
+            </ul>
+        </div>
+
+        <div class="code">
+            /profile/delete
+        </div>
+
+        <p style="text-align: center">
+            &copy; Rights reserved for <strong>Taha Shieenavaz</strong>
+        </p>
+    </body>
+</html>

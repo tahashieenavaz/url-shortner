@@ -9,9 +9,9 @@ class ProfileAddLink extends AuthenticatedRequest {
     public $required = ['target'];
     public function handle()
     {
-        checkVar($_POST['target'], FILTER_VALIDATE_URL, 'Enter a valid URL');
+        checkVar($_REQUEST['target'], FILTER_VALIDATE_URL, 'Enter a valid URL');
         $slug = substr(hash('sha256', microtime(true)),0, 7);
-        $target = $_POST['target'];
+        $target = $_REQUEST['target'];
 
         // Checking to see slug Doesnt exists
         $statement = db()->prepare('SELECT count(*) FROM urls WHERE slug=?');

@@ -11,8 +11,9 @@ function dump( $message = '' ) {
 }
 
 function checkVar( $value, $method, $message = '' ) {
-    if( ! filter_var($value, $method) )
-        dump( $message );
+    if( ! filter_var($value, $method) ){
+        dm( $message );
+    }
 }
 
 function message( $content ) {

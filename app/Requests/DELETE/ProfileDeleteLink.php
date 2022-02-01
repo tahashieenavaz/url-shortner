@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Requests\POST;
+namespace App\Requests\DELETE;
 use App\Requests\AuthenticatedRequest;
 use App\Requests\PostRequest;
 use App\User;

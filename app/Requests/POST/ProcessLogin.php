@@ -12,9 +12,9 @@ class ProcessLogin {
     public $required = ['email', 'password'];
 
     public function handle() {
-        checkVar($_POST['email'],FILTER_VALIDATE_EMAIL,'Wrong Email');
-        $email = $_POST['email'];
-        $password = hash('sha256', $_POST['password']);
+        checkVar($_REQUEST['email'],FILTER_VALIDATE_EMAIL,'Wrong Email');
+        $email = $_REQUEST['email'];
+        $password = hash('sha256', $_REQUEST['password']);
         echo User::login( $email, $password );
     }
 

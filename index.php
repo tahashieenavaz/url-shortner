@@ -5,7 +5,6 @@ header('Content-Type: application/json');
 
 require 'vendor/autoload.php';
 
-use App\Cache;
 use App\HandleShortenedURL;
 
 define('DS',DIRECTORY_SEPARATOR );
