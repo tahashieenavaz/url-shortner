@@ -4,11 +4,9 @@ header('Content-Type: application/json');
 
 require 'vendor/autoload.php';
 
-use App\Requests\GET\IndexPage;
-use App\Requests\GET\ProfilePage;
-use App\Requests\POST\ProcessLogin;
-use App\Requests\POST\ProcessRegister;
-use App\User;
+use App\Cache;
+
+use App\HandleURLs;
 
 define('DS',DIRECTORY_SEPARATOR );
 define('PATH', __DIR__ . DS);
@@ -40,28 +38,7 @@ if( $method == 'POST' ) {
         '/profile' => 'ProfilePage',
     ];
 
-    $link = explode( '/', $target );
-
-    if( ! array_key_exists($target, $map) && count( $link ) == 2 ) {
-        // Serach for a Link instead of a static GET request
-        $slug = $link[1];
-        $statement = db()->prepare('SELECT * FROM urls WHERE slug=?');
-        $statement->execute([ $slug ]);
-        $urlsFetchedFromDatabase = $statement->fetch(PDO::FETCH_ASSOC);
-
-        if( $urlsFetchedFromDatabase ) {
-            // TODO: Change this behaviour to redirect
-            // Link found
-            echo json_encode($urlsFetchedFromDatabase);
-        }else {
-            // Link not found
-            echo "404";
-        }
-
-        // Stop Execution
-        exit;
-    }
-
+    (new HandleURLs)($target, $map);
 }
 
 $class = $map[$target];
